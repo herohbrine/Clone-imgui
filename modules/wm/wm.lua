@@ -226,7 +226,7 @@ function wm.tick(dt)
             event.move(win, mouse)
             event.resize(win, mouse)
 
-            win.close.box = {x = (win.x+win.h)-20, y = win.y-20, w = 20, h = 20}
+            win.close.box = {x = (win.x+win.w)-20, y = win.y-20, w = 20, h = 20}
             win.close.hover = collision.pointInRect(win.close.box, mouse)
             win.close.active = win.close.hover and mouse.down
 
