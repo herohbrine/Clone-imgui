@@ -1,6 +1,7 @@
-local wm = require("modules.wm.wm")
+local gui = require("scripts.lgui.lgui")
 
 local i = 0
+local i2 = false
 
 function love.load()
 
@@ -12,9 +13,18 @@ function love.load()
         resizable = true
     })
 
-    window1 = wm.newWindow("My Window", 200, 200, 200, 200)
+    window1 = gui.newWindow("My Window", 200, 200, 200, 200)
+    window2 = gui.newWindow("The Other Window", 400, 400, 200, 150)
+    window3 = gui.newWindow("My Window", 200, 400, 200, 200)
+    window4 = gui.newWindow("The Other Window", 200, 400, 200, 150)
 
     label1 = window1:label(i, 5, 5)
+    label2 = window2:label(i2, 5, 5)
+
+    checkbox1 = window2:checkbox(window2, "title", 5, 30, true, function(state)
+        i2 = tostring(state)
+        label2:setTitle(i2)
+    end)
 
     slider1 = window1:slider(window1, "i", 5, 30, i, function(value)
         i = value
@@ -24,25 +34,25 @@ end
 
 function love.textinput(text)
     
-    wm.textinput(text)
+    gui.textinput(text)
 
 end
 
 function love.keypressed(k)
     
-    wm.keypressed(k)
+    gui.keypressed(k)
 
 end
 
 function love.update(dt)
 
-    wm.tick()
+    gui.tick()
     label1:setTitle(i)
 
 end
 
 function love.draw()
 
-    wm.draw()
+    gui.draw()
 
 end
